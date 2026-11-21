@@ -1,6 +1,8 @@
 # intermediate files
 .cache/
 build/
+build-wasm/
+dist-wasm/
 .sconsign.dblite
 compile_commands.json
 
@@ -9,6 +11,7 @@ compile_commands.json
 *.dylib
 *.pk3
 *.so
+*.wasm
 *.zip
 
 # OS clutter

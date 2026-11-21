@@ -1426,5 +1426,7 @@ void Q_OpenURL(const char *url) {
     if (ret != EXIT_SUCCESS) {
         trap->Print("Could not open URL: %s\n", url);
     }
+#elif defined(__EMSCRIPTEN__)
+    trap->Print("Open URL: %s\n", url);
 #endif
 }

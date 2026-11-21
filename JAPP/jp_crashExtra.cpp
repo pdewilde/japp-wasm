@@ -5,7 +5,7 @@
 
 // cgame helper
 
-#if ARCH_WIDTH == 64 || defined(MACOS_X) || defined(QARCH_ARM)
+#if ARCH_WIDTH == 64 || defined(MACOS_X) || defined(QARCH_ARM) || defined(NO_CRASHHANDLER) || defined(__EMSCRIPTEN__)
 
 // wat do?
 

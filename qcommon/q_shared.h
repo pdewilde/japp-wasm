@@ -50,6 +50,13 @@
 #define DLL_EXT ".so"
 #define RAND_MAX 2147483647
 
+#elif defined(__EMSCRIPTEN__)
+
+#include <unistd.h>
+#define stricmp strcasecmp
+#define PATH_SEP "/"
+#define DLL_EXT ".wasm"
+
 #endif
 
 #if defined(__arm__) || defined(_M_ARM)

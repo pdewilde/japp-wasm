@@ -44,6 +44,17 @@ Environment Variables
 - `NO_SSE` 1 to not generate SSE2 instructions - closer to basejka. This is used for official builds
 - `MORE_WARNINGS` 1 to enable more compiler warnings
 
+## WebAssembly (OpenJK Web)
+
+Build `SIDE_MODULE=2` `.wasm` modules (`cgamewasm32.wasm`, `jampgamewasm32.wasm`, `uiwasm32.wasm`) and package a ready-to-import `japp-wasm.zip` for [openjk-wasm](https://github.com/pdewilde/openjk-wasm):
+
+```bash
+source /path/to/emsdk/emsdk_env.sh
+bash build-wasm.sh
+```
+
+Then drag and drop `dist-wasm/japp-wasm.zip` into the **Multiplayer Mods** section on [openjk.pdewil.de](https://openjk.pdewil.de/).
+
 ## contributors ([full list](https://github.com/Razish/japp/graphs/contributors))
 
 - Raz0r (lead)

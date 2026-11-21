@@ -34,7 +34,7 @@ float RandFloat(float min, float max) {
 #if defined(_WIN32)
     if (japp_randFix.integer == 2)
         randActual = (randActual << 16) | randActual;
-#elif defined(__linux__)
+#elif defined(__linux__) || defined(__EMSCRIPTEN__)
     if (japp_randFix.integer == 1)
         randMax = RAND_MAX;
 #endif
