@@ -41,7 +41,7 @@ set(JAPP_COMMON_COMPILE_FLAGS
 
 set(JAPP_COMMON_DEFINES
     NDEBUG
-    NO_SQL
+    NO_MYSQL
     NO_NOTIFY
     NO_CRASHHANDLER
     NO_GEOIP
@@ -69,6 +69,17 @@ add_library(japp_semver STATIC
     semver/semver.c
 )
 target_compile_options(japp_semver PRIVATE ${JAPP_COMMON_COMPILE_FLAGS} -Wno-unused-function)
+
+add_library(japp_sqlite STATIC
+    sqlite/sqlite3.c
+)
+target_compile_options(japp_sqlite PRIVATE ${JAPP_COMMON_COMPILE_FLAGS} -Wno-unused-function -Wno-unused-variable -Wno-implicit-fallthrough)
+target_compile_definitions(japp_sqlite PRIVATE
+    SQLITE_THREADSAFE=0
+    SQLITE_OMIT_LOAD_EXTENSION=1
+    SQLITE_OMIT_WAL=1
+    SQLITE_DQS=0
+)
 
 add_library(japp_lua STATIC
     lua/lapi.c
@@ -326,7 +337,7 @@ set_target_properties(jampgamewasm32 PROPERTIES PREFIX "" OUTPUT_NAME "jampgamew
 target_include_directories(jampgamewasm32 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/game)
 target_compile_options(jampgamewasm32 PRIVATE ${JAPP_COMMON_COMPILE_FLAGS} -fvisibility-inlines-hidden)
 target_compile_definitions(jampgamewasm32 PRIVATE ${JAPP_COMMON_DEFINES} PROJECT_GAME JPLUA LUA_COMPAT_BITLIB LUA_COMPAT_APIINTCASTS)
-target_link_libraries(jampgamewasm32 PRIVATE japp_cjson japp_lua japp_semver)
+target_link_libraries(jampgamewasm32 PRIVATE japp_cjson japp_lua japp_semver japp_sqlite)
 target_link_options(jampgamewasm32 PRIVATE ${JAPP_SIDE_LINK_FLAGS})
 
 # --- uiwasm32.wasm ---

@@ -36,15 +36,21 @@ cp -v "${BUILD_DIR}/cgamewasm32.wasm" \
 	"${SCRIPT_DIR}/description.txt" \
 	"${STAGE_DIR}/"
 
+if [ -d "${SCRIPT_DIR}/wasm-assets" ]; then
+	cp -rv "${SCRIPT_DIR}/wasm-assets/." "${STAGE_DIR}/"
+fi
+
 if command -v python3 >/dev/null 2>&1; then
 	python3 - "${STAGE_DIR}" "${OUT_DIR}/japp-wasm.zip" <<'PY'
 import os, sys, zipfile
 stage_dir, zip_path = sys.argv[1], sys.argv[2]
 with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-    for fn in sorted(os.listdir(stage_dir)):
-        full = os.path.join(stage_dir, fn)
-        if os.path.isfile(full):
-            zf.write(full, arcname=f"japp/{fn}")
+    for root, dirs, files in os.walk(stage_dir):
+        dirs.sort()
+        for fn in sorted(files):
+            full = os.path.join(root, fn)
+            rel = os.path.relpath(full, stage_dir).replace("\\", "/")
+            zf.write(full, arcname=f"japp/{rel}")
 print(f"Packaged {zip_path} ({os.path.getsize(zip_path) / 1024:.1f} KB)")
 PY
 fi
