@@ -55,6 +55,10 @@ bash build-wasm.sh
 
 JA++ is included as a 1-click built-in mod on [openjk.pdewil.de](https://openjk.pdewil.de/) (both in the Multiplayer client and the Browser-Hosted Dedicated Server at `server.html?mod=japp`), or you can drag and drop your own `dist-wasm/japp-wasm.zip` into the **Multiplayer Mods** section to override it.
 
+### Known Differences / Issues (Wasm Build)
+
+- **No `japp-assets` bundle:** Because `Razish/japp-assets` does not include an open-source license, `japp-wasm.zip` bundles only GPLv2 code and clean-room replacement assets (`wasm-assets/lua/init.lua` and `wasm-assets/gfx/menus/missing_skin.tga`). `ui_showMissingSkins` defaults to `0` so iconless BaseJKA skins are hidden by default (matching Base OpenJK); set `/ui_showMissingSkins 1` and `/ui_restart` if you want to browse hidden skins with the `?` placeholder icon.
+
 ## contributors ([full list](https://github.com/Razish/japp/graphs/contributors))
 
 - Raz0r (lead)
