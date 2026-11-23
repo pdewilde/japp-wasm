@@ -46,14 +46,14 @@ Environment Variables
 
 ## WebAssembly (OpenJK Web)
 
-Build `SIDE_MODULE=2` `.wasm` modules (`cgamewasm32.wasm`, `jampgamewasm32.wasm`, `uiwasm32.wasm`) and package a ready-to-import `japp-wasm.zip` for [openjk-wasm](https://github.com/pdewilde/openjk-wasm):
+Build `SIDE_MODULE=2` `.wasm` modules (`cgamewasm32.wasm`, `jampgamewasm32.wasm`, `uiwasm32.wasm`) — with bundled **SQLite** support (`-DNO_MYSQL -UNO_SQLITE`) and a clean-room GPLv2 `lua/init.lua` bootstrap for **JPLua** — and package a ready-to-import `japp-wasm.zip` for [openjk-wasm](https://github.com/pdewilde/openjk-wasm):
 
 ```bash
 source /path/to/emsdk/emsdk_env.sh
 bash build-wasm.sh
 ```
 
-Then drag and drop `dist-wasm/japp-wasm.zip` into the **Multiplayer Mods** section on [openjk.pdewil.de](https://openjk.pdewil.de/).
+JA++ is included as a 1-click built-in mod on [openjk.pdewil.de](https://openjk.pdewil.de/) (both in the Multiplayer client and the Browser-Hosted Dedicated Server at `server.html?mod=japp`), or you can drag and drop your own `dist-wasm/japp-wasm.zip` into the **Multiplayer Mods** section to override it.
 
 ## contributors ([full list](https://github.com/Razish/japp/graphs/contributors))
 
